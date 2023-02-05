@@ -1,91 +1,44 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import Link from "next/link"
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="h-[93vh] w-screen max-w-full bg-slate-200 flex flex-col">
+      <div className="w-screen max-w-full h-[23vh] flex flex-col items-center justify-center">
+        <h1 className="text-[5vh] font-bold">My Blog App</h1>
+        <h2 className="text-[3vh]">Firas Alshami</h2>
+      </div>
+      <div className="w-screen max-w-full h-[70vh] flex">
+        <div className="w-1/2 h-full bg-red-500 flex justify-center">
+          <p className="w-3/4 text-[3vh]">This is the left section for paragraphs</p>
+        </div>
+        <div className="w-1/2 h-full grid grid-cols-2 grid-rows-2">
+          <Card link='/about' title='About' paragraph='Visit the about page to learn about me and the tech stack I used to create this app'/>
+          <Card link='https://firasalshami.vercel.app/' title='Portolio Website' paragraph='Visit my porfolio website to learn more about me'/>
+          <Card link='/blog' title='Blog' paragraph='Check out my blog posts where I post about the latest technologies that I am learning'/>
+          <Card link='/about' title='About' paragraph='Visit the about page to learn about me and the tech stack I used to create this app'/>
         </div>
       </div>
+    </div>
+  )
+}
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
+type cardProps = {
+  link: string,
+  title: string,
+  paragraph: string
+}
+
+const Card = ({link, title, paragraph}:cardProps) => {
+  return (
+    <Link href={link} className="flex items-center justify-center hover:cursor-pointer">
+      <div className="h-3/4 w-2/3 bg-white shadow-2xl rounded-2xl flex flex-col items-center">
+        <div className="h-[25%] w-[80%] flex justify-center items-center">
+          <h1 className="text-[3vh] font-semibold">{title}</h1>
+        </div>
+        <div className="h-[75%] w-[80%]">
+          <p className="text-[2vh]">{paragraph}</p>
         </div>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </Link>
   )
 }
